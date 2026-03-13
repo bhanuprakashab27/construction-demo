@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "fa-house",
+    "title": "Residential Projects",
+    "description": "Modern homes designed with comfort and durability."
+  },
+  {
+    "icon": "fa-building",
+    "title": "Commercial Buildings",
+    "description": "Office spaces and commercial complexes."
+  },
+  {
+    "icon": "fa-hammer",
+    "title": "Renovation",
+    "description": "Transform old structures with modern upgrades."
+  },
+  {
+    "icon": "fa-ruler-combined",
+    "title": "Project Planning",
+    "description": "Efficient planning and architecture solutions."
+  }
+]

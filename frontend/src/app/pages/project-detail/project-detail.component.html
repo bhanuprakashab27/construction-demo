@@ -1,0 +1,80 @@
+<section class="project-hero">
+
+<div class="container">
+
+<h1>{{project?.title}}</h1>
+
+<p>{{project?.location}} • {{project?.year}}</p>
+
+</div>
+
+</section>
+
+
+<section class="project-gallery">
+
+<div class="container">
+
+<div class="row">
+
+<div
+class="col-md-4 mb-4"
+*ngFor="let img of project?.gallery"
+>
+
+<img [src]="img" class="img-fluid rounded shadow">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="project-info">
+
+<div class="container">
+
+<h3>Project Details</h3>
+
+<p><strong>Location:</strong> {{project?.location}}</p>
+
+<p><strong>Area:</strong> {{project?.area}}</p>
+
+<p><strong>Completed:</strong> {{project?.year}}</p>
+
+</div>
+
+</section>
+
+
+<!-- cta -->
+
+<section class="project-cta">
+
+<div class="container text-center">
+
+<h2>Have a Project in Mind?</h2>
+
+<p>
+Let Sthapatya Inc help you turn your vision into reality with
+expert construction solutions.
+</p>
+
+<div class="cta-buttons">
+
+<a routerLink="/contact" class="btn btn-warning me-3">
+Get Free Consultation
+</a>
+
+<a routerLink="/services" class="btn btn-outline-light">
+View Our Services
+</a>
+
+</div>
+
+</div>
+
+</section>

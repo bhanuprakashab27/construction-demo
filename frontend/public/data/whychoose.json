@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "fas fa-hard-hat",
+    "title": "Experienced Team",
+    "description": "Our skilled professionals ensure every project is built with precision and quality."
+  },
+  {
+    "icon": "fas fa-building",
+    "title": "Quality Construction",
+    "description": "We use high quality materials and modern construction techniques."
+  },
+  {
+    "icon": "fas fa-clock",
+    "title": "On-Time Delivery",
+    "description": "Sthapatya Inc ensures projects are completed within the promised timeline."
+  },
+  {
+    "icon": "fas fa-handshake",
+    "title": "Client Satisfaction",
+    "description": "Customer satisfaction is our top priority in every project we deliver."
+  }
+]

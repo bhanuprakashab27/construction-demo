@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Luxury Villa Construction",
+    "location": "Bangalore",
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+  },
+  {
+    "id": 2,
+    "title": "Commercial Office Building",
+    "location": "Hyderabad",
+    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
+  },
+  {
+    "id": 3,
+    "title": "Modern Apartment Complex",
+    "location": "Chennai",
+    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6"
+  }
+]

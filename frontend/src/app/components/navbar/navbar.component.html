@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black shadow position-relative">
+  <div class="container">
+
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <span style="color:var(--primary-color)">
+        <i class="fas fa-building"></i>
+      </span>
+      BuildCraft
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" data-bs-toggle="collapse" data-bs-target="#navMenu">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" data-bs-toggle="collapse" data-bs-target="#navMenu">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/services" data-bs-toggle="collapse" data-bs-target="#navMenu">Services</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/projects" data-bs-toggle="collapse" data-bs-target="#navMenu">Projects</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" data-bs-toggle="collapse" data-bs-target="#navMenu">Contact</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link btn btn-warning text-dark ms-3 px-3" routerLink="/contact">
+            Get Quote
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Rahul Sharma",
+    "role": "Home Owner",
+    "message": "Sthapatya Inc delivered our dream home with exceptional quality and professionalism.",
+    "image": "https://randomuser.me/api/portraits/men/32.jpg"
+  },
+  {
+    "name": "Priya Reddy",
+    "role": "Business Owner",
+    "message": "Their team completed our office building project on time with great workmanship.",
+    "image": "https://randomuser.me/api/portraits/women/45.jpg"
+  },
+  {
+    "name": "Arjun Patel",
+    "role": "Property Developer",
+    "message": "Highly reliable construction company with excellent attention to detail.",
+    "image": "https://randomuser.me/api/portraits/men/76.jpg"
+  }
+]

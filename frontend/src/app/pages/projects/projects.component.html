@@ -1,0 +1,125 @@
+<section class="projects-hero">
+
+  <div class="hero-overlay">
+
+    <div class="container text-center">
+
+      <h1>Our Projects</h1>
+
+      <p>
+        Explore some of the successful construction projects
+        completed by Sthapatya Inc.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="projects-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2>Our Projects</h2>
+
+        </div>
+
+        <!-- FILTER BUTTONS -->
+
+        <div class="project-filter text-center mb-4">
+
+<button
+(click)="filter('all')"
+[class]="selectedCategory==='all' ? 'btn btn-dark me-2' : 'btn btn-outline-dark me-2'">
+All
+</button>
+
+<button
+(click)="filter('residential')"
+[class]="selectedCategory==='residential' ? 'btn btn-dark me-2' : 'btn btn-outline-dark me-2'">
+Residential
+</button>
+
+<button
+(click)="filter('commercial')"
+[class]="selectedCategory==='commercial' ? 'btn btn-dark me-2' : 'btn btn-outline-dark me-2'">
+Commercial
+</button>
+
+<button
+(click)="filter('interior')"
+[class]="selectedCategory==='interior' ? 'btn btn-dark' : 'btn btn-outline-dark'">
+Interior
+</button>
+
+</div>
+
+
+
+        <!-- PROJECT GRID -->
+
+        <div class="row">
+
+           <div
+class="col-lg-4 col-md-6 mb-4"
+*ngFor="let project of filteredProjects; trackBy: trackByProject"
+
+>
+
+<a [routerLink]="['/projects', project.slug]">
+
+<div class="project-card">
+
+<img [src]="project.image">
+
+<div class="project-overlay">
+
+<h5>{{project.title}}</h5>
+
+<p>{{project.location}}</p>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- cta -->
+
+<section class="project-cta">
+
+<div class="container text-center">
+
+<h2>Have a Project in Mind?</h2>
+
+<p>
+Let Sthapatya Inc help you turn your vision into reality with
+expert construction solutions.
+</p>
+
+<div class="cta-buttons">
+
+<a routerLink="/contact" class="btn btn-warning me-3">
+Get Free Consultation
+</a>
+
+<a routerLink="/services" class="btn btn-outline-light">
+View Our Services
+</a>
+
+</div>
+
+</div>
+
+</section>

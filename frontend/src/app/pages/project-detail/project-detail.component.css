@@ -1,0 +1,42 @@
+.project-hero{
+padding:120px 0;
+background:black;
+color:white;
+text-align:center;
+}
+
+.project-gallery{
+padding:50px 0;
+background:#f7f7f7;
+}
+
+.project-info{
+padding:20px 0;
+}
+
+/* cta */
+
+.project-cta{
+padding:100px 0;
+background:black;
+color:white;
+margin-top:60px;
+}
+
+.project-cta h2{
+font-size:40px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.project-cta p{
+color:#ccc;
+max-width:600px;
+margin:auto;
+margin-bottom:30px;
+}
+
+.cta-buttons .btn{
+padding:12px 28px;
+font-weight:600;
+}

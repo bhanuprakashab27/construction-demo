@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Residential Construction",
+    "description": "We build modern homes designed for comfort, durability, and aesthetic appeal.",
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    "features": [
+      "Custom Home Construction",
+      "Villa Development",
+      "Luxury Home Projects"
+    ]
+  },
+  {
+    "title": "Commercial Construction",
+    "description": "We construct offices, retail spaces, and commercial buildings with modern infrastructure.",
+    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab",
+    "features": [
+      "Office Buildings",
+      "Shopping Complexes",
+      "Industrial Structures"
+    ]
+  },
+  {
+    "title": "Renovation & Remodeling",
+    "description": "Transform existing buildings with modern renovation and structural upgrades.",
+    "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
+    "features": [
+      "Home Renovation",
+      "Structural Repair",
+      "Interior Upgrades"
+    ]
+  }
+]

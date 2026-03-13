@@ -1,0 +1,93 @@
+.contact-hero{
+height:320px;
+background:url("https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+}
+
+.hero-overlay{
+background:rgba(0,0,0,0.65);
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+}
+
+.contact-hero h1{
+color:white;
+font-size:46px;
+font-weight:700;
+}
+
+.contact-hero p{
+color:#ddd;
+font-size:18px;
+margin-top:10px;
+}
+
+
+.contact-section{
+padding:90px 0;
+}
+
+.contact-info p{
+margin-bottom:12px;
+font-size:16px;
+}
+
+.contact-info i{
+color:#ff9933;
+margin-right:10px;
+}
+
+.contact-form input,
+.contact-form textarea{
+border-radius:6px;
+padding:10px;
+}
+
+.contact-form button{
+padding:10px 25px;
+font-weight:600;
+min-width:160px;
+}
+
+.toast-box{
+position:fixed;
+top:20px;
+right:20px;
+z-index:9999;
+animation:slideIn 0.4s ease;
+}
+
+.toast-content{
+background:#28a745;
+color:white;
+padding:14px 22px;
+border-radius:8px;
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:500;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.toast-content i{
+font-size:18px;
+}
+
+@keyframes slideIn{
+
+from{
+transform:translateX(100%);
+opacity:0;
+}
+
+to{
+transform:translateX(0);
+opacity:1;
+}
+
+}
