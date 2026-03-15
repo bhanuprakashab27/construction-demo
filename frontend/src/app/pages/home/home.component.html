@@ -255,45 +255,46 @@
 
 <section class="testimonial-section">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-title text-center">
+<div class="section-title text-center">
 
-            <h6 class="subtitle">TESTIMONIALS</h6>
-
-            <h2>What Clients Say About <span>Sthapatya Inc</span></h2>
-
-            <div class="title-line"></div>
-
-        </div>
-
-        <div class="row mt-5 align-items-stretch">
-
-
-            <div class="col-lg-4 col-md-6 mb-4" *ngFor="let t of testimonials">
-
-  <div class="testimonial-card h-100">
-
-    <img [src]="t.image" alt="client">
-
-    <p class="message">
-      "{{t.message}}"
-    </p>
-
-    <h5>{{t.name}}</h5>
-
-    <span>{{t.role}}</span>
-
-  </div>
+<h6 class="subtitle">TESTIMONIALS</h6>
+<h2>What Clients Say About <span>Sthapatya Inc</span></h2>
 
 </div>
 
+<div class="swiper testimonialSwiper">
 
-        </div>
+<div class="swiper-wrapper pb-5 mt-4">
 
-    </div>
+<div class="swiper-slide" *ngFor="let t of testimonials">
+
+<div class="testimonial-card">
+
+<img [src]="t.image">
+
+<p class="message">
+"{{t.message}}"
+</p>
+
+<h5>{{t.name}}</h5>
+<span>{{t.role}}</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="swiper-pagination mt-5"></div>
+
+</div>
+
+</div>
 
 </section>
+
 
 <!-- contact -->
  <section class="contact-preview">

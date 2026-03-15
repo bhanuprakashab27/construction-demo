@@ -98,7 +98,6 @@ box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
 /* process */
-
 .process-section{
 padding:100px 0;
 background:#f7f7f7;
@@ -109,6 +108,7 @@ display:flex;
 justify-content:space-between;
 position:relative;
 margin-top:50px;
+flex-wrap:wrap;
 }
 
 .process-timeline::before{
@@ -152,6 +152,30 @@ margin-bottom:10px;
 color:#666;
 font-size:14px;
 }
+.process-step:hover .icon{
+transform:scale(1.1);
+transition:0.3s;
+}
+
+
+@media (max-width:768px){
+
+.process-timeline{
+flex-direction:column;
+align-items:center;
+}
+
+.process-timeline::before{
+display:none;
+}
+
+.process-step{
+width:100%;
+margin-bottom:40px;
+}
+
+}
+
 
 /* stats */
 
