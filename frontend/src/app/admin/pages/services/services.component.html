@@ -1,0 +1,235 @@
+<div class="page-header">
+
+<h3>Services</h3>
+
+<button
+class="btn btn-warning"
+(click)="resetModal()"
+data-bs-toggle="modal"
+data-bs-target="#serviceModal">
+
+<i class="fas fa-plus"></i> Add Service
+
+</button>
+
+
+</div>
+
+
+<div class="table-responsive">
+
+<table class="table service-table">
+
+<thead>
+
+<tr>
+
+<th>Icon</th>
+<th>Title</th>
+<th>Description</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let service of services; let i=index">
+
+<td>
+
+<i [class]="service.icon"></i>
+
+</td>
+
+<td>{{service.title}}</td>
+
+<td>{{service.description}}</td>
+
+<td>
+
+<span class="badge bg-success">
+
+{{service.status}}
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="btn btn-sm btn-primary me-2"
+(click)="editService(service,i)"
+data-bs-toggle="modal"
+data-bs-target="#serviceModal">
+
+<i class="fas fa-edit"></i>
+
+</button>
+
+
+<button
+class="btn btn-sm btn-danger"
+(click)="deleteService(i)">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!--  -->
+
+<!-- SERVICE MODAL -->
+
+<div class="modal fade" id="serviceModal">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">
+{{ editMode ? 'Edit Service' : 'Add Service' }}
+</h5>
+
+<button
+class="btn-close"
+data-bs-dismiss="modal"
+(click)="resetModal()">
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<form [formGroup]="serviceForm" (ngSubmit)="saveService()">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>Service Title</label>
+
+<input
+class="form-control"
+formControlName="title">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label>Icon</label>
+
+<select
+class="form-control"
+formControlName="icon">
+
+<option value="fas fa-home">Home</option>
+<option value="fas fa-building">Building</option>
+<option value="fas fa-couch">Interior</option>
+<option value="fas fa-tools">Renovation</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label>Status</label>
+
+<select
+class="form-control"
+formControlName="status">
+
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label>Service Image</label>
+
+<input
+type="file"
+class="form-control"
+(change)="onImageSelect($event)"
+#imageInput>
+
+</div>
+
+
+<div class="col-12 mb-3">
+
+<label>Description</label>
+
+<textarea
+rows="4"
+class="form-control"
+formControlName="description">
+</textarea>
+
+</div>
+
+</div>
+
+
+<!-- IMAGE PREVIEW -->
+
+<div *ngIf="imagePreview" class="mb-3">
+
+<img
+[src]="imagePreview"
+class="img-preview">
+
+</div>
+
+
+<div class="text-end">
+
+<button
+type="button"
+class="btn btn-secondary me-2"
+data-bs-dismiss="modal"
+(click)="resetModal()">
+
+Cancel
+
+</button>
+
+<button class="btn btn-success" data-bs-dismiss="modal">
+
+{{ editMode ? 'Update' : 'Save' }}
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

@@ -14,6 +14,12 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'projects/:slug', component: ProjectDetailComponent },
 //   { path: 'gallery', component: GalleryComponent },
-  { path: 'contact', component: ContactComponent }
+  { path: 'contact', component: ContactComponent },
+  {
+path:'admin',
+loadChildren:()=>import('./admin/admin.routes')
+.then(m=>m.adminRoutes)
+}
+
 ];
 

@@ -1,0 +1,272 @@
+<div class="projects-page">
+
+<div class="page-header">
+
+<h3>Projects</h3>
+
+<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#projectModal">
+<i class="fas fa-plus"></i> Add Project
+</button>
+
+</div>
+
+<div class="table-top">
+
+<input
+type="text"
+class="form-control search-box"
+placeholder="Search project..."
+[(ngModel)]="searchText"
+>
+
+</div>
+
+
+
+
+<div class="table-responsive">
+
+<table class="table project-table">
+
+<thead>
+
+<tr>
+<th>Image</th>
+<th>Title</th>
+<th>Category</th>
+<th>Location</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let project of filteredProjects() | slice:(page-1)*pageSize:(page)*pageSize; let i = index">
+
+
+<td>
+<img [src]="project.image">
+</td>
+
+<td>{{project.title}}</td>
+
+<td>{{project.category}}</td>
+
+<td>{{project.location}}</td>
+
+<td>
+<span class="badge bg-success">
+{{project.status}}
+</span>
+</td>
+
+<td>
+
+<button class="btn btn-sm btn-primary me-2"
+(click)="editProject(project,i)"
+data-bs-toggle="modal"
+data-bs-target="#projectModal">
+
+<i class="fas fa-edit"></i>
+
+</button>
+
+<button class="btn btn-sm btn-danger"
+(click)="deleteProject(i)">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+
+</tr>
+
+</tbody>
+
+</table>
+
+<nav class="mt-3">
+
+<ul class="pagination justify-content-end">
+
+<li class="page-item"
+[class.disabled]="page === 1">
+
+<button class="page-link" (click)="page = page - 1">
+Previous
+</button>
+
+</li>
+
+<li class="page-item disabled">
+
+<span class="page-link">
+Page {{page}}
+</span>
+
+</li>
+
+<li class="page-item"
+[class.disabled]="page * pageSize >= filteredProjects().length">
+
+<button class="page-link" (click)="page = page + 1">
+Next
+</button>
+
+</li>
+
+</ul>
+
+</nav>
+
+
+</div>
+
+</div>
+
+
+<!-- Add Project -->
+
+<!-- ADD PROJECT MODAL -->
+
+<div class="modal fade" id="projectModal" tabindex="-1">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">
+
+{{ editMode ? 'Edit Project' : 'Add Project' }}
+
+</h5>
+
+
+<button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetModal()"></button>
+
+</div>
+
+<div class="modal-body">
+
+<form [formGroup]="projectForm" (ngSubmit)="saveProject()">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+<label>Title</label>
+<input class="form-control" formControlName="title">
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Category</label>
+
+<select class="form-control" formControlName="category">
+<option value="">Select</option>
+<option value="residential">Residential</option>
+<option value="commercial">Commercial</option>
+<option value="interior">Interior</option>
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Location</label>
+<input class="form-control" formControlName="location">
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Status</label>
+
+<select class="form-control" formControlName="status">
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+</select>
+
+</div>
+
+<div class="col-12 mb-3">
+<label>Image</label>
+<input type="file" class="form-control" #mainImageInput (change)="onFileSelect($event)">
+</div>
+<div class="col-12 mb-3" *ngIf="imagePreview">
+
+<img
+[src]="imagePreview"
+class="img-preview"
+/>
+
+</div>
+
+<!--  -->
+<div class="col-12 mb-3">
+
+<label>Project Gallery Images</label>
+
+<input
+type="file"
+multiple
+class="form-control"
+#galleryInput
+(change)="onGallerySelect($event)"
+>
+
+</div>
+<div class="gallery-preview" *ngIf="galleryPreview.length">
+
+<div class="gallery-item" *ngFor="let img of galleryPreview; let i=index">
+
+<img [src]="img">
+
+<button
+type="button"
+class="remove-btn"
+(click)="removeGalleryImage(i)">
+
+<i class="fas fa-times"></i>
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="col-12 mb-3">
+<label>Description</label>
+<textarea rows="4" class="form-control" formControlName="description"></textarea>
+</div>
+
+</div>
+
+<div class="text-end">
+
+<button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal" (click)="resetModal()">
+Cancel
+</button>
+<button class="btn btn-success" data-bs-dismiss="modal">
+
+{{ editMode ? 'Update Project' : 'Save Project' }}
+
+</button>
+
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+

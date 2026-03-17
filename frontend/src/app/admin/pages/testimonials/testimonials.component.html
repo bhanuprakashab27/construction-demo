@@ -1,0 +1,251 @@
+<div class="page-header">
+
+<h3>Testimonials</h3>
+
+<button
+class="btn btn-warning"
+(click)="resetModal()"
+data-bs-toggle="modal"
+data-bs-target="#testimonialModal">
+
+<i class="fas fa-plus"></i> Add Testimonial
+
+</button>
+
+</div>
+
+
+<div class="table-responsive">
+
+<table class="table testimonial-table">
+
+<thead>
+
+<tr>
+
+<th>Photo</th>
+<th>Name</th>
+<th>Role</th>
+<th>Rating</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let t of testimonials; let i=index">
+
+<td>
+
+<img [src]="t.image" class="client-img">
+
+</td>
+
+<td>{{t.name}}</td>
+
+<td>{{t.role}}</td>
+
+<td>
+
+<i
+*ngFor="let star of [].constructor(t.rating)"
+class="fas fa-star text-warning">
+
+</i>
+
+</td>
+
+<td>
+
+<span class="badge bg-success">
+{{t.status}}
+</span>
+
+</td>
+
+<td>
+
+<button
+class="btn btn-sm btn-primary me-2"
+(click)="editTestimonial(t,i)"
+data-bs-toggle="modal"
+data-bs-target="#testimonialModal">
+
+<i class="fas fa-edit"></i>
+
+</button>
+
+<button
+class="btn btn-sm btn-danger"
+(click)="deleteTestimonial(i)">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--  -->
+
+
+<div class="modal fade" id="testimonialModal">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">
+
+{{ editMode ? 'Edit Testimonial' : 'Add Testimonial' }}
+
+</h5>
+
+<button
+class="btn-close"
+data-bs-dismiss="modal"
+(click)="resetModal()">
+</button>
+
+</div>
+
+
+<div class="modal-body">
+
+<form [formGroup]="testimonialForm" (ngSubmit)="saveTestimonial()">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>Client Name</label>
+
+<input
+class="form-control"
+formControlName="name">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label>Role</label>
+
+<input
+class="form-control"
+formControlName="role">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label>Rating</label>
+
+<select
+class="form-control"
+formControlName="rating">
+
+<option value="5">5 Stars</option>
+<option value="4">4 Stars</option>
+<option value="3">3 Stars</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label>Status</label>
+
+<select
+class="form-control"
+formControlName="status">
+
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-12 mb-3">
+
+<label>Message</label>
+
+<textarea
+rows="4"
+class="form-control"
+formControlName="message">
+</textarea>
+
+</div>
+
+
+<div class="col-md-12 mb-3">
+
+<label>Client Photo</label>
+
+<input
+type="file"
+class="form-control"
+(change)="onImageSelect($event)"
+#imageInput>
+
+</div>
+
+</div>
+
+
+<div *ngIf="imagePreview">
+
+<img
+[src]="imagePreview"
+class="client-preview">
+
+</div>
+
+
+<div class="text-end">
+
+<button
+type="button"
+class="btn btn-secondary me-2"
+data-bs-dismiss="modal"
+(click)="resetModal()">
+
+Cancel
+
+</button>
+
+<button class="btn btn-success" data-bs-dismiss="modal">
+
+{{ editMode ? 'Update' : 'Save' }}
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

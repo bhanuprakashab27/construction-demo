@@ -1,0 +1,51 @@
+.page-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.testimonial-table{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.testimonial-table th{
+background:#111;
+color:white;
+}
+
+.testimonial-table img{
+width:60px;
+height:45px;
+object-fit:cover;
+border-radius:5px;
+}
+
+.testimonial-table td{
+vertical-align:middle;
+}
+
+.testimonial-table tbody tr:hover{
+background:#f8f9fa;
+}
+
+.client-img{
+
+width:45px;
+height:45px;
+border-radius:50%;
+object-fit:cover;
+
+}
+
+.client-preview{
+
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+
+}

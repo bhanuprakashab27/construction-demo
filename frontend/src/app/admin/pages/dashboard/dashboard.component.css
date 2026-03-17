@@ -1,0 +1,57 @@
+.page-title{
+margin-bottom:25px;
+font-weight:600;
+}
+
+/* card */
+
+.stat-card{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:20px;
+border-radius:10px;
+color:white;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.stat-card:hover{
+transform:translateY(-5px);
+}
+
+/* icon */
+
+.stat-icon{
+font-size:30px;
+opacity:0.9;
+}
+
+/* gradients */
+
+.projects{
+background:linear-gradient(45deg,#ff7e5f,#ff9933);
+}
+
+.services{
+background:linear-gradient(45deg,#36d1dc,#5b86e5);
+}
+
+.testimonials{
+background:linear-gradient(45deg,#f7971e,#ffd200);
+}
+
+.contacts{
+background:linear-gradient(45deg,#11998e,#38ef7d);
+}
+
+.stat-card h4{
+font-size:28px;
+margin:0;
+font-weight:700;
+}
+
+.stat-card p{
+margin:0;
+opacity:0.9;
+}

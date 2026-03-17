@@ -1,0 +1,91 @@
+<div class="page-header">
+
+<h3>Contact Leads</h3>
+
+</div>
+
+
+<div class="table-top">
+
+<input
+type="text"
+class="form-control search-box"
+placeholder="Search lead..."
+[(ngModel)]="searchText">
+
+</div>
+
+
+<div class="table-responsive">
+
+<table class="table contact-table">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Message</th>
+<th>Date</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let lead of filteredLeads(); let i=index">
+
+<td>{{lead.name}}</td>
+
+<td>{{lead.email}}</td>
+
+<td>{{lead.phone}}</td>
+
+<td>{{lead.message}}</td>
+
+<td>{{lead.date}}</td>
+
+<td>
+
+<span
+class="badge"
+[ngClass]="lead.status === 'new' ? 'bg-warning' : 'bg-success'">
+
+{{lead.status}}
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="btn btn-sm btn-success me-2"
+(click)="markContacted(i)">
+
+<i class="fas fa-check"></i>
+
+</button>
+
+<button
+class="btn btn-sm btn-danger"
+(click)="deleteLead(i)">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
