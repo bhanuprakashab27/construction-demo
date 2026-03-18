@@ -1,0 +1,26 @@
+.login-page{
+
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#000,#222);
+
+}
+
+.login-card{
+
+width:350px;
+padding:30px;
+background:#111;
+color:white;
+border-radius:12px;
+box-shadow: 0 5px 20px rgb(19 198 58 / 50%);
+
+}
+
+input{
+/* background:#222; */
+border:none;
+color:white;
+}

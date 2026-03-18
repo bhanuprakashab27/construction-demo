@@ -18,8 +18,14 @@ export const routes: Routes = [
   {
 path:'admin',
 loadChildren:()=>import('./admin/admin.routes')
-.then(m=>m.adminRoutes)
+.then(m=>m.ADMIN_ROUTES)
+},
+{
+path:'admin/login',
+loadComponent:()=>import('./admin/pages/login/login.component')
+.then(m=>m.LoginComponent)
 }
+
 
 ];
 

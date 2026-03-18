@@ -1,9 +1,10 @@
-import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
-export const adminRoutes:Routes=[
+export const ADMIN_ROUTES = [
 
 {
 path:'',
+canActivate:[authGuard],
 loadComponent:()=>import('./layout/admin-layout/admin-layout.component')
 .then(m=>m.AdminLayoutComponent),
 
@@ -28,18 +29,19 @@ loadComponent:()=>import('./pages/services/services.component')
 },
 
 {
-path:'contacts',
-loadComponent:()=>import('./pages/contacts/contacts.component')
-.then(m=>m.ContactsComponent)
-},
-{
 path:'testimonials',
 loadComponent:()=>import('./pages/testimonials/testimonials.component')
 .then(m=>m.TestimonialsComponent)
+},
+
+{
+path:'contacts',
+loadComponent:()=>import('./pages/contacts/contacts.component')
+.then(m=>m.ContactsComponent)
 }
 
 ]
 
 }
 
-]
+];
