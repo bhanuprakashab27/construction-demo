@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-services',
@@ -8,40 +9,40 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
   templateUrl: './services.component.html',
   styleUrl: './services.component.css'
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
 
-  services = [
+//   services = [
 
-{
-icon:'fas fa-home',
-title:'Residential Construction',
-description:'Modern and luxury home construction.',
-status:'Active'
-},
+// {
+// icon:'fas fa-home',
+// title:'Residential Construction',
+// description:'Modern and luxury home construction.',
+// status:'Active'
+// },
 
-{
-icon:'fas fa-building',
-title:'Commercial Construction',
-description:'Office and commercial building projects.',
-status:'Active'
-},
+// {
+// icon:'fas fa-building',
+// title:'Commercial Construction',
+// description:'Office and commercial building projects.',
+// status:'Active'
+// },
 
-{
-icon:'fas fa-couch',
-title:'Interior Design',
-description:'Modern interior planning and decoration.',
-status:'Active'
-}
+// {
+// icon:'fas fa-couch',
+// title:'Interior Design',
+// description:'Modern interior planning and decoration.',
+// status:'Active'
+// }
 
-];
+// ];
 
-// services:any[]=[];
+services:any[]=[];
 
 serviceForm:FormGroup;
 
 editMode=false;
 
-editIndex:any;
+selectedServiceId:any;
 
 imagePreview:any=null;
 
@@ -49,7 +50,7 @@ selectedFile:any;
 
 @ViewChild('imageInput') imageInput!:ElementRef;
 
-constructor(private fb:FormBuilder){
+constructor(private fb:FormBuilder, private dataService:DataService){
 
 this.serviceForm=this.fb.group({
 
@@ -60,6 +61,16 @@ status:['active']
 
 });
 
+}
+ngOnInit(): void {
+ this.getAllService();
+  
+}
+
+getAllService(){
+  this.dataService.getAllServices().subscribe(data =>{
+    this.services = data;
+  })
 }
 
 onImageSelect(event:any){
@@ -94,12 +105,23 @@ image:this.imagePreview
 };
 
 if(this.editMode){
+  this.dataService.updateService(this.selectedServiceId,service).subscribe({
+    next : () => {
+      this.getAllService();
+     
+    },
+    error: (err) => console.error(err)
+  })
 
-this.services[this.editIndex]=service;
 
 }else{
+  this.dataService.saveService(service).subscribe({
+    next: () => {
+      this.getAllService();
+    },
+    error: (err) => console.error(err)
+  })
 
-this.services.push(service);
 
 }
 
@@ -109,11 +131,11 @@ this.resetModal();
 
 
 
-editService(service:any,index:number){
+editService(service:any,id:any){
 
 this.editMode=true;
 
-this.editIndex=index;
+this.selectedServiceId=id;
 
 this.serviceForm.patchValue(service);
 
@@ -121,11 +143,16 @@ this.imagePreview=service.image;
 
 }
 
-deleteService(index:number){
+deleteService(id:any){
 
 if(confirm("Delete this service?")){
+ this.dataService.deleteService(id).subscribe({
+  next: () =>{
+    this.getAllService();
+  },
+  error: (err) => console.error(err)
+ })
 
-this.services.splice(index,1);
 
 }
 
@@ -141,7 +168,7 @@ this.selectedFile=null;
 
 this.editMode=false;
 
-this.editIndex=null;
+// this.editIndex=null;
 
 if(this.imageInput){
 

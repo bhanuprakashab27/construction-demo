@@ -44,12 +44,13 @@ sendMessage(data:any):Observable<any>{
     return this.http.post(this.apiUrl + "/contact", data);
   }
 
+  // Project Api's
   getAdminProjects(){
-    return this.http.get<any[]>(this.apiUrl + "/project/getAll")
+    return this.http.get<any[]>(this.apiUrl + "/project/getAll");
   }
 
   saveAdminProject(project:any):Observable<any>{
-    return this.http.post(this.apiUrl + "/project/save",project)
+    return this.http.post(this.apiUrl + "/project/save",project);
   }
 
 updateProject(id: string, project: any) {
@@ -57,8 +58,27 @@ updateProject(id: string, project: any) {
 }
 
   deleteproject(id: String) {
-    return this.http.delete(`${this.apiUrl}/project/delete/${id}`, { responseType: 'text' })
+    return this.http.delete(`${this.apiUrl}/project/delete/${id}`, { responseType: 'text' });
   }
 
+  // Service Api's
+
+  getAllServices(){
+    return this.http.get<any[]>(this.apiUrl + "/service/getAll");
+  }
+
+  saveService(service:any):Observable<any>{
+    return this.http.post(this.apiUrl + "/service/save" , service);
+  }
+
+  updateService(id:any, service:any){
+    return this.http.put(`${this.apiUrl}/service/update/${id}`,service);
+  }
+
+  deleteService(id:any){
+    return this.http.delete(`${this.apiUrl}/service/delete/${id}`,{responseType : 'text'});
+  }
+
+  // Testominal Api's
 
 }

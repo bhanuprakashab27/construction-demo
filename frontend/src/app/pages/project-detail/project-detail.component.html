@@ -1,10 +1,10 @@
-<section class="project-hero">
+<section class="project-hero" [ngStyle]="{'background-image': 'url(' + project?.image + ')', 
+                     'background-size': 'cover', 
+                     'background-position': 'center'}">
 
 <div class="container">
 
-<h1>{{project?.title}}</h1>
 
-<p>{{project?.location}} • {{project?.year}}</p>
 
 </div>
 
@@ -38,12 +38,15 @@ class="col-md-4 mb-4"
 <div class="container">
 
 <h3>Project Details</h3>
+<h1><u>{{project?.title | titlecase}}</u></h1>
 
-<p><strong>Location:</strong> {{project?.location}}</p>
+<!-- <p>{{project?.location}} • {{project?.year}}</p> -->
 
-<p><strong>Area:</strong> {{project?.area}}</p>
+<p><strong>Location:</strong> {{project?.location | titlecase}}</p>
 
-<p><strong>Completed:</strong> {{project?.year}}</p>
+<p><strong>Category:</strong> {{ project?.category | titlecase }}</p>
+
+<p><strong>Description:</strong> {{project?.description}}</p>
 
 </div>
 

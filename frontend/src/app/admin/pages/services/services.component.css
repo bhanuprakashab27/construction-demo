@@ -5,15 +5,16 @@ align-items:center;
 margin-bottom:20px;
 }
 
-.service-table{
+/* .service-table{
 background:white;
 border-radius:10px;
 overflow:hidden;
 box-shadow:0 4px 15px rgba(0,0,0,0.08);
+width: 100%;
 }
 
 .service-table th{
-background:#111;
+background:#333333;
 color:white;
 }
 
@@ -30,7 +31,44 @@ vertical-align:middle;
 
 .service-table tbody tr:hover{
 background:#f8f9fa;
+} */
+
+.service-table {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  width: 100%;
+
+  table-layout: fixed; /* 🔥 VERY IMPORTANT */
 }
+
+.service-table th {
+  background: #333333;
+  color: white;
+}
+
+.service-table td {
+  vertical-align: middle;
+}
+
+/* 🔥 THIS FIXES YOUR ISSUE */
+.desc-cell {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* optional: prevent icons/actions from wrapping weirdly */
+.service-table td:nth-child(1),
+.service-table td:nth-child(5) {
+  white-space: nowrap;
+}
+
+.service-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
 
 .img-preview{
 

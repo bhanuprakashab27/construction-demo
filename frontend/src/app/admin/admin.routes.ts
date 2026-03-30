@@ -10,6 +10,7 @@ loadComponent:()=>import('./layout/admin-layout/admin-layout.component')
 
 children:[
 
+
 {
 path:'dashboard',
 loadComponent:()=>import('./pages/dashboard/dashboard.component')

@@ -24,7 +24,7 @@ placeholder="Search project..."
 
 
 
-<div class="table-responsive">
+<div class="table-responsive d-none d-md-block">
 
 <table class="table project-table">
 
@@ -50,33 +50,33 @@ placeholder="Search project..."
 <img [src]="project.image">
 </td>
 
-<td>{{project.title}}</td>
+<td>{{project.title | titlecase}}</td>
 
-<td>{{project.category}}</td>
+<td>{{project.category | titlecase}}</td>
 
-<td>{{project.location}}</td>
+<td>{{project.location | titlecase}}</td>
 
 <td>
 <span class="badge bg-success">
-{{project.status}}
+{{project.status | titlecase}}
 </span>
 </td>
 
 <td>
 
-<button class="btn btn-sm btn-primary me-2"
+<button class="btn btn-sm  me-2"
 (click)="editProject(project,project.id)"
 data-bs-toggle="modal"
 data-bs-target="#projectModal">
 
-<i class="fas fa-edit"></i>
+<i class="fas fa-edit text-primary" ></i>
 
 </button>
 
-<button class="btn btn-sm btn-danger"
+<button class="btn btn-sm "
 (click)="deleteProject(project.id)">
 
-<i class="fas fa-trash"></i>
+<i class="fas fa-trash text-danger"></i>
 
 </button>
 
@@ -125,6 +125,64 @@ Next
 
 
 </div>
+
+</div>
+
+<!-- mobile view -->
+
+<div class="mobile-cards d-md-none">
+
+  <div class="card mb-3" *ngFor="let project of filteredProjects()">
+
+    <div class="card-body">
+
+      <!-- Top Row: Title + Buttons -->
+      <div class="d-flex justify-content-between align-items-start mb-2">
+
+        <!-- Left: Icon + Title -->
+        <div class="d-flex align-items-start flex-grow-1 me-2">
+          <img class="card-img" [src]="project.image">
+
+          <!-- Title wraps properly -->
+          <strong class="ms-2 text-wrap" style="word-break: break-word;">
+            {{ project.title }}
+          </strong>
+        </div>
+
+        <!-- Right: Edit/Delete Buttons -->
+        <div class="d-flex flex-shrink-0">
+          <button
+            class="btn btn-sm me-1 p-1"
+            data-bs-toggle="modal"
+            data-bs-target="#serviceModal"
+            (click)="editProject(project, project.id)">
+            <i class="fas fa-edit text-primary"></i>
+          </button>
+
+          <button class="btn btn-sm p-1"
+                  (click)="deleteProject(project.id)">
+            <i class="fas fa-trash text-danger"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Status Badge -->
+      <div class="mb-2">
+      <span><strong>Status: &nbsp;</strong></span>  <span class="badge bg-success">{{ project.status | titlecase}}</span>
+      </div>
+
+     <div class="mb-2">
+        <span class=""><strong>Category:&nbsp;</strong>{{ project.category | titlecase}}</span>
+      </div>
+       <div class="mb-2">
+        <span class=""><strong>Location:&nbsp;</strong>{{ project.location | titlecase}}</span>
+      </div>
+      
+
+    </div>
+
+  </div>
 
 </div>
 

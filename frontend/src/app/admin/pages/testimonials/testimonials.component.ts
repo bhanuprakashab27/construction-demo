@@ -16,7 +16,7 @@ testimonialForm:FormGroup;
 
 editMode=false;
 
-editIndex:any;
+selectedTestominalId:any;
 
 imagePreview:any=null;
 
@@ -71,7 +71,7 @@ image:this.imagePreview
 
 if(this.editMode){
 
-this.testimonials[this.editIndex]=data;
+
 
 }else{
 
@@ -82,11 +82,11 @@ this.testimonials.push(data);
 this.resetModal();
 
 }
-editTestimonial(t:any,index:number){
+editTestimonial(t:any,id:any){
 
 this.editMode=true;
 
-this.editIndex=index;
+this.selectedTestominalId=id;
 
 this.testimonialForm.patchValue(t);
 
@@ -112,7 +112,7 @@ this.imagePreview=null;
 
 this.editMode=false;
 
-this.editIndex=null;
+// this.editIndex=null;
 
 if(this.imageInput){
 

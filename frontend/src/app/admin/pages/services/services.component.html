@@ -16,7 +16,7 @@ data-bs-target="#serviceModal">
 </div>
 
 
-<div class="table-responsive">
+<!-- <div class="table-responsive">
 
 <table class="table service-table">
 
@@ -61,21 +61,21 @@ data-bs-target="#serviceModal">
 <td>
 
 <button
-class="btn btn-sm btn-primary me-2"
-(click)="editService(service,i)"
+class="btn btn-sm  me-2"
+
 data-bs-toggle="modal"
 data-bs-target="#serviceModal">
 
-<i class="fas fa-edit"></i>
+<i class="fas fa-edit text-primary" (click)="editService(service,service.id)"></i>
 
 </button>
 
 
 <button
-class="btn btn-sm btn-danger"
-(click)="deleteService(i)">
+class="btn btn-sm "
+>
 
-<i class="fas fa-trash"></i>
+<i class="fas fa-trash text-danger"  (click)="deleteService(service.id)"></i>
 
 </button>
 
@@ -87,9 +87,124 @@ class="btn btn-sm btn-danger"
 
 </table>
 
+</div> -->
+<!-- desktop view -->
+<div class="table-responsive d-none d-md-block">
+
+<table class="table service-table">
+
+  <colgroup>
+    <col style="width: 10%">
+    <col style="width: 20%">
+    <col style="width: 50%">
+    <col style="width: 10%">
+    <col style="width: 10%">
+  </colgroup>
+
+<thead>
+<tr>
+<th>Icon</th>
+<th>Title</th>
+<th>Description</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr *ngFor="let service of services; let i=index">
+
+<td>
+<i [class]="service.icon"></i>
+</td>
+
+<td  class="desc-cell">{{service.title | titlecase}}</td>
+
+<td class="desc-cell">
+{{service.description}}
+</td>
+
+<td>
+<span class="badge bg-success">
+{{service.status | titlecase}}
+</span>
+</td>
+
+<td>
+<button
+class="btn btn-sm me-2"
+data-bs-toggle="modal"
+data-bs-target="#serviceModal">
+<i class="fas fa-edit text-primary"
+(click)="editService(service,service.id)"></i>
+</button>
+
+<button class="btn btn-sm">
+<i class="fas fa-trash text-danger"
+(click)="deleteService(service.id)"></i>
+</button>
+</td>
+
+</tr>
+
+</tbody>
+</table>
+
 </div>
 
+<div class="mobile-cards d-md-none">
 
+  <div class="card mb-3" *ngFor="let service of services">
+
+    <div class="card-body">
+
+      <!-- Top Row: Title + Buttons -->
+      <div class="d-flex justify-content-between align-items-start mb-2">
+
+        <!-- Left: Icon + Title -->
+        <div class="d-flex align-items-start flex-grow-1 me-2">
+          <i [class]="service.icon"></i>
+
+          <!-- Title wraps properly -->
+          <strong class="ms-2 text-wrap" style="word-break: break-word;">
+            {{ service.title | titlecase}}
+          </strong>
+        </div>
+
+        <!-- Right: Edit/Delete Buttons -->
+        <div class="d-flex flex-shrink-0">
+          <button
+            class="btn btn-sm me-1 p-1"
+            data-bs-toggle="modal"
+            data-bs-target="#serviceModal"
+            (click)="editService(service, service.id)">
+            <i class="fas fa-edit text-primary"></i>
+          </button>
+
+          <button class="btn btn-sm p-1"
+                  (click)="deleteService(service.id)">
+            <i class="fas fa-trash text-danger"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Status Badge -->
+      <div class="mb-2">
+        <span class="badge bg-success">{{ service.status | titlecase}}</span>
+      </div>
+
+      <!-- Description -->
+      <p class="mb-0 text-wrap" style="word-break: break-word;">
+        {{ service.description }}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
 <!--  -->
 
 <!-- SERVICE MODAL -->

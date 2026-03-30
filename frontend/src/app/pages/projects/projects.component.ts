@@ -18,7 +18,7 @@ constructor(private dataService:DataService){}
 
 ngOnInit(){
 
-  this.dataService.getProject().subscribe(data=>{
+  this.dataService.getAdminProjects().subscribe(data=>{
     this.projects=data;
     this.filteredProjects=data;
   });
@@ -35,7 +35,7 @@ this.filteredProjects = category === 'all'
 
 }
 trackByProject(index:number, project:any){
-  return project.slug;
+  return project.id;
 }
 
 }

@@ -20,11 +20,11 @@ private dataService:DataService
 
 ngOnInit(){
 
-const slug=this.route.snapshot.paramMap.get('slug');
+const id=this.route.snapshot.paramMap.get('id');
 
-this.dataService.getProject().subscribe(data=>{
+this.dataService.getAdminProjects().subscribe(data=>{
 
-this.project=data.find((p:any)=>p.slug===slug);
+this.project=data.find((p:any)=>p.id===id);
 
 });
 
