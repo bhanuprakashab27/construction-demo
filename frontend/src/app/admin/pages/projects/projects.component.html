@@ -65,7 +65,7 @@ placeholder="Search project..."
 <td>
 
 <button class="btn btn-sm btn-primary me-2"
-(click)="editProject(project,i)"
+(click)="editProject(project,project.id)"
 data-bs-toggle="modal"
 data-bs-target="#projectModal">
 
@@ -74,7 +74,7 @@ data-bs-target="#projectModal">
 </button>
 
 <button class="btn btn-sm btn-danger"
-(click)="deleteProject(i)">
+(click)="deleteProject(project.id)">
 
 <i class="fas fa-trash"></i>
 

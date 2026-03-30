@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-projects',
@@ -8,81 +9,16 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
 
   @ViewChild('mainImageInput') mainImageInput!: ElementRef;
 
 @ViewChild('galleryInput') galleryInput!: ElementRef;
 
 
-  projects = [
+ 
 
-{
-title:'Luxury Villa',
-category:'residential',
-location:'Bangalore',
-status:'active',
-image:'assets/images/project1.jpg',
-description: 'bsachsbdjgcyugdvhcbkuhic hjhdwaxzmqxhv'
-},
-
-{
-title:'Corporate Office',
-category:'commercial',
-location:'Hyderabad',
-status:'active',
-image:'assets/images/project2.jpg',
-description: 'bsachsbdjgcyugdvhcbkuhic hjhdwaxzmqxhv'
-},
-
-{
-title:'Modern Inteior',
-category:'interior',
-location:'Chennai',
-status:'active',
-image:'assets/images/project3.jpg',
-description: 'bsachsbdjgcyugdvhcbkuhic hjhdwaxzmqxhv'
-},
-
-{
-title:'Modern Interior',
-category:'interior',
-location:'Chennai',
-status:'active',
-image:'assets/images/project3.jpg',
-description: 'bsachsbdjgcyugdvhcbkuhic hjhdwaxzmqxhv'
-},
-
-{
-title:'Modern Iterior',
-category:'interior',
-location:'Chennai',
-status:'active',
-image:'assets/images/project3.jpg',
-description: 'bsachsbdjgcyugdvhcbkuhic hjhdwaxzmqxhv'
-},
-
-{
-title:'Modern Interio',
-category:'interior',
-location:'Chennai',
-status:'active',
-image:'assets/images/project3.jpg',
-description: 'bsachsbdjgcyugdvhcbkuhic hjhdwaxzmqxhv'
-},
-
-{
-title:'Modern nterior',
-category:'interior',
-location:'Chennai',
-status:'active',
-image:'assets/images/project3.jpg',
-description: 'bsachsbdjgcyugdvhcbkuhic hjhdwaxzmqxhv'
-}
-
-];
-
-// projects:any[]=[];
+projects:any[]=[];
 
 projectForm:FormGroup;
 
@@ -91,8 +27,9 @@ selectedFile:any;
 editMode=false;
 
 editIndex:any;
+selectedProjectId: any;
 
-constructor(private fb:FormBuilder){
+constructor(private fb:FormBuilder, private dataService:DataService){
 
 this.projectForm=this.fb.group({
 
@@ -107,11 +44,25 @@ description:['']
 }
 
 
+  ngOnInit() {
+   
+    this.getAllProjects();
+  }
 
-editProject(project:any,index:number){
+  getAllProjects(){
+     this.dataService.getAdminProjects().subscribe(data=>{
+    this.projects=data;
+  
+   
+  });
+  }
+
+
+
+editProject(project:any,index:any){
 
 this.editMode = true;
-
+this.selectedProjectId = project.id;
 this.editIndex = index;
 
 this.projectForm.patchValue(project);
@@ -122,14 +73,6 @@ this.imagePreview = project.image;
 
 
 saveProject(){
-
-// const project = {
-
-// ...this.projectForm.value,
-// image: this.selectedFile ? URL.createObjectURL(this.selectedFile) : ''
-
-// };
-
 const project = {
 
 ...this.projectForm.value,
@@ -139,25 +82,46 @@ gallery:this.galleryPreview
 };
 
 
-if(this.editMode){
+if (this.editMode) {
+// update
+    this.dataService.updateProject(this.selectedProjectId, project)
+      .subscribe({
+        next: () => {
+          this.getAllProjects(); 
+          this.resetModal();
+        },
+        error: (err) => console.error(err)
+      });
 
-this.projects[this.editIndex] = project;
+  } else {
 
-}else{
+    // CREATE
+    this.dataService.saveAdminProject(project)
+      .subscribe({
+        next: () => {
+          this.getAllProjects(); // refresh list
+          this.resetModal();
+        },
+        error: (err) => console.error(err)
+      });
 
-this.projects.push(project);
-
-}
+  }
 
 this.resetModal();
 
 }
 
-deleteProject(index:number){
+deleteProject(id:any){
 
-if(confirm("Delete this project?")){
+if(confirm("Are you Sure Delete this project?")){
 
-this.projects.splice(index,1);
+this.dataService.deleteproject(id).subscribe({
+  next: () => {
+          this.getAllProjects(); 
+         
+        },
+        error: (err) => console.error(err)
+      });
 
 }
 

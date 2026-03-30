@@ -44,6 +44,21 @@ sendMessage(data:any):Observable<any>{
     return this.http.post(this.apiUrl + "/contact", data);
   }
 
+  getAdminProjects(){
+    return this.http.get<any[]>(this.apiUrl + "/project/getAll")
+  }
+
+  saveAdminProject(project:any):Observable<any>{
+    return this.http.post(this.apiUrl + "/project/save",project)
+  }
+
+updateProject(id: string, project: any) {
+  return this.http.put(`${this.apiUrl}/project/update/${id}`, project);
+}
+
+  deleteproject(id: String) {
+    return this.http.delete(`${this.apiUrl}/project/delete/${id}`, { responseType: 'text' })
+  }
 
 
 }
