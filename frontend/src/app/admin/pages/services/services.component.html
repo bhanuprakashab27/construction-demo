@@ -123,6 +123,8 @@ class="btn btn-sm "
 
 <td class="desc-cell">
 {{service.description}}
+<hr *ngIf="service.features">
+<p *ngFor="let f of service.features; let i = index;">{{i+1}}.{{f}}</p>
 </td>
 
 <td>
@@ -198,6 +200,10 @@ data-bs-target="#serviceModal">
       <!-- Description -->
       <p class="mb-0 text-wrap" style="word-break: break-word;">
         {{ service.description }}
+      </p>
+
+       <p class="mb-0 text-wrap" *ngFor="let f of service.features; let i = index;">
+        {{i+1}}.{{ f }}
       </p>
 
     </div>
@@ -305,6 +311,33 @@ formControlName="description">
 
 </div>
 
+<div class="col-12 mb-3">
+  <label>Features</label>
+
+  <div class="d-flex mb-2">
+    <input
+      type="text"
+      class="form-control me-2"
+      [formControl]="featureControl"
+      placeholder="Enter feature">
+
+    <button type="button" class="btn btn-primary" (click)="addFeature()">
+      Add
+    </button>
+  </div>
+
+  <!-- Show added features -->
+  <div>
+    <span *ngFor="let f of features; let i = index" class="badge bg-dark me-2">
+      {{ f }}
+      <span
+        style="cursor:pointer; margin-left:8px;"
+        (click)="removeFeature(i)">
+        ×
+      </span>
+    </span>
+  </div>
+</div>
 </div>
 
 

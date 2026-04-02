@@ -97,6 +97,28 @@ Enter valid email
 <input
 type="text"
 class="form-control"
+placeholder="Phone"
+formControlName="phone">
+
+<div class="text-danger"
+*ngIf="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid">
+<small class="text-danger" *ngIf="contactForm.get('phone')?.errors?.['required']">
+    Phone number is required
+  </small>
+
+  <small class="text-danger" *ngIf="contactForm.get('phone')?.errors?.['pattern']">
+    Enter a valid phone number
+  </small>
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<input
+type="text"
+class="form-control"
 placeholder="Subject"
 formControlName="subject">
 
@@ -108,7 +130,6 @@ Subject is required
 </div>
 
 </div>
-
 
 <div class="mb-3">
 

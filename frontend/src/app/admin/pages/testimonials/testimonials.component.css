@@ -49,3 +49,11 @@ border-radius:50%;
 object-fit:cover;
 
 }
+
+/* card view image */
+.card-img{
+width:60px;
+height:45px;
+object-fit:cover;
+border-radius:5px;
+}

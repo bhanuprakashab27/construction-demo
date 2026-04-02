@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from '../../../services/data.service';
 
 @Component({
@@ -95,12 +95,28 @@ reader.readAsDataURL(file);
 
 }
 
+featureControl = new FormControl('');
+features: string[] = [];
+
+addFeature() {
+  const value = this.featureControl.value;
+
+  if (value && value.trim()) {
+    this.features.push(value.trim());
+    this.featureControl.setValue('');
+  }
+}
+
+removeFeature(index: number) {
+  this.features.splice(index, 1);
+}
 saveService(){
 
 const service={
 
 ...this.serviceForm.value,
-image:this.imagePreview
+image:this.imagePreview,
+ features: this.features
 
 };
 

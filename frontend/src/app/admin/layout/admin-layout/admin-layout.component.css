@@ -59,12 +59,13 @@ flex-direction:column;
 
 .admin-navbar{
 height:60px;
-background:white;
+background-color: #1f2937;
+border-bottom: 2px solid #f59e0b;
+color: white;
 display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 20px;
-border-bottom:1px solid #eee;
 }
 
 .menu-btn{
@@ -102,6 +103,7 @@ left:0;
 
 .menu-btn{
 display:block;
+color: white;
 }
 
 .admin-container{

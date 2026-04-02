@@ -40,9 +40,7 @@ getProject(){
 }
 
 
-sendMessage(data:any):Observable<any>{
-    return this.http.post(this.apiUrl + "/contact", data);
-  }
+
 
   // Project Api's
   getAdminProjects(){
@@ -80,5 +78,48 @@ updateProject(id: string, project: any) {
   }
 
   // Testominal Api's
+  getAllTestimonial(){
+    return this.http.get<any[]>(this.apiUrl + "/testimonial/getAll");
+  }
+
+  saveTestimonial(testimonial:any):Observable<any>{
+    return this.http.post(this.apiUrl + "/testimonial/save" , testimonial);
+  }
+
+  updateTestimonial(id:any, testimonial:any){
+    return this.http.put(`${this.apiUrl}/testimonial/update/${id}`,testimonial);
+  }
+
+  deleteTestimonial(id:any){
+    return this.http.delete(`${this.apiUrl}/testimonial/delete/${id}`,{responseType : 'text'});
+  }
+
+  // contact or leads
+
+  getAllContactLead(){
+    return this.http.get<any[]>(this.apiUrl + "/contactLead/getAll");
+  }
+
+  // saveContactLead(contactLead:any):Observable<any>{
+  //   return this.http.post(this.apiUrl + "/contactLead/save" , contactLead);
+  // }
+
+  sendMessage(data:any):Observable<any>{
+    return this.http.post(this.apiUrl + "/contactLead/save", data);
+  }
+
+  updateContactLead(id:any, contactLead:any){
+    return this.http.put(`${this.apiUrl}/contactLead/update/${id}`,contactLead);
+  }
+
+  deleteContactLead(id:any){
+    return this.http.delete(`${this.apiUrl}/contactLead/delete/${id}`,{responseType : 'text'});
+  }
+
+  updateLeadStatus(id: any, status: string) {
+  return this.http.put(`${this.apiUrl}/contactLead/updateStatus/${id}`, {
+    status: status
+  });
+}
 
 }

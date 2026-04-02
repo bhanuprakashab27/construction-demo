@@ -15,7 +15,7 @@ data-bs-target="#testimonialModal">
 </div>
 
 
-<div class="table-responsive">
+<div class="table-responsive d-none d-md-block">
 
 <table class="table testimonial-table">
 
@@ -49,13 +49,9 @@ data-bs-target="#testimonialModal">
 <td>{{t.role}}</td>
 
 <td>
-
-<i
-*ngFor="let star of [].constructor(t.rating)"
-class="fas fa-star text-warning">
-
-</i>
-
+  <i *ngFor="let star of createStars(t.rating)" 
+     class="fas fa-star text-warning">
+  </i>
 </td>
 
 <td>
@@ -70,7 +66,7 @@ class="fas fa-star text-warning">
 
 <button
 class="btn btn-sm btn-primary me-2"
-(click)="editTestimonial(t,i)"
+(click)="editTestimonial(t,t.id)"
 data-bs-toggle="modal"
 data-bs-target="#testimonialModal">
 
@@ -80,7 +76,7 @@ data-bs-target="#testimonialModal">
 
 <button
 class="btn btn-sm btn-danger"
-(click)="deleteTestimonial(i)">
+(click)="deleteTestimonial(t.id)">
 
 <i class="fas fa-trash"></i>
 
@@ -96,6 +92,65 @@ class="btn btn-sm btn-danger"
 
 </div>
 
+<!-- mobile view -->
+
+<div class="mobile-cards d-md-none">
+
+  <div class="card mb-3" *ngFor="let t of testimonials; let i=index">
+
+    <div class="card-body">
+
+      <!-- Top Row: Title + Buttons -->
+      <div class="d-flex justify-content-between align-items-start mb-2">
+
+        <!-- Left: Icon + Title -->
+        <div class="d-flex align-items-start flex-grow-1 me-2">
+          <img class="card-img" [src]="t.image">
+
+          <!-- Title wraps properly -->
+          <strong class="ms-2 text-wrap" style="word-break: break-word;">
+            {{ t.name }}
+          </strong>
+        </div>
+
+        <!-- Right: Edit/Delete Buttons -->
+        <div class="d-flex flex-shrink-0">
+          <button
+            class="btn btn-sm me-1 p-1"
+            data-bs-toggle="modal"
+            data-bs-target="#serviceModal"
+            (click)="editTestimonial(t,t.id)">
+            <i class="fas fa-edit text-primary"></i>
+          </button>
+
+          <button class="btn btn-sm p-1"
+                  (click)="deleteTestimonial(t.id)">
+            <i class="fas fa-trash text-danger"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Status Badge -->
+      <div class="mb-2">
+      <span><strong>Status: &nbsp;</strong></span>  <span class="badge bg-success">{{ t.status | titlecase}}</span>
+      </div>
+
+     <div class="mb-2">
+        <span class=""><strong>Role:&nbsp;</strong>{{ t.role | titlecase}}</span>
+      </div>
+       <div class="mb-2">
+        <span class=""><strong>Rating:&nbsp;</strong> <i *ngFor="let star of createStars(t.rating)" 
+     class="fas fa-star text-warning">
+  </i></span>
+      </div>
+      
+
+    </div>
+
+  </div>
+
+</div>
 <!--  -->
 
 

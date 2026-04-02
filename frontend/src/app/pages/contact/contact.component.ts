@@ -28,6 +28,8 @@ export class ContactComponent {
 
       subject: ['', [Validators.required]],
 
+     phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
+
       message: ['', [Validators.required, Validators.minLength(10)]]
 
     });

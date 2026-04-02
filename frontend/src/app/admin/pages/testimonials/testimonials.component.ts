@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-testimonials',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.css'
 })
-export class TestimonialsComponent {
+export class TestimonialsComponent implements OnInit {
 
   testimonials:any[]=[];
 
@@ -24,7 +25,7 @@ selectedFile:any;
 
 @ViewChild('imageInput') imageInput!:ElementRef;
 
-constructor(private fb:FormBuilder){
+constructor(private fb:FormBuilder, private dataService:DataService){
 
 this.testimonialForm=this.fb.group({
 
@@ -37,6 +38,16 @@ status:['active']
 });
 
 }
+
+  ngOnInit(){
+   this.getAllTestimonial();
+  }
+
+  getAllTestimonial(){
+    this.dataService.getAllTestimonial().subscribe(data =>{
+      this.testimonials = data;
+    })
+  }
 
 onImageSelect(event:any){
 
@@ -62,7 +73,7 @@ reader.readAsDataURL(file);
 
 saveTestimonial(){
 
-const data={
+const testimonial={
 
 ...this.testimonialForm.value,
 image:this.imagePreview
@@ -70,12 +81,21 @@ image:this.imagePreview
 };
 
 if(this.editMode){
-
+this.dataService.updateTestimonial(this.selectedTestominalId,testimonial).subscribe({
+  next: () =>{
+    this.getAllTestimonial();
+  },
+  error: (err) =>console.error(err)
+})
 
 
 }else{
-
-this.testimonials.push(data);
+  this.dataService.saveTestimonial(testimonial).subscribe({
+    next: () => {
+      this.getAllTestimonial();
+    },
+    error : (err) => console.error(err)
+  })
 
 }
 
@@ -94,11 +114,16 @@ this.imagePreview=t.image;
 
 }
 
-deleteTestimonial(index:number){
+deleteTestimonial(id:any){
 
 if(confirm("Delete testimonial?")){
 
-this.testimonials.splice(index,1);
+this.dataService.deleteTestimonial(id).subscribe({
+  next: () => {
+    this.getAllTestimonial();
+  },
+  error: (err) => console.error(err)
+})
 
 }
 
@@ -120,5 +145,9 @@ this.imageInput.nativeElement.value='';
 
 }
 
+}
+
+createStars(rating: number): number[] {
+  return Array.from({ length: rating || 0 });
 }
 }
