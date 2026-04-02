@@ -26,7 +26,5 @@ loadComponent:()=>import('./admin/pages/login/login.component')
 .then(m=>m.LoginComponent)
 }
 
-
-
 ];
 
