@@ -18,7 +18,7 @@ import com.sthapatya.inc.service.ProjectService;
 
 @RestController
 @RequestMapping("/api/project")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class ProjectEndpoint {
 	
 	@Autowired

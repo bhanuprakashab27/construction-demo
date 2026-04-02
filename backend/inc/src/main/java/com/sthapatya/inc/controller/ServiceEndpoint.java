@@ -19,7 +19,7 @@ import com.sthapatya.inc.service.ServiceService;
 
 @RestController
 @RequestMapping("/api/service")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class ServiceEndpoint {
 
 	@Autowired

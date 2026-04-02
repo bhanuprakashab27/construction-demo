@@ -21,7 +21,7 @@ import com.sthapatya.inc.service.ContactService;
 
 @RestController
 @RequestMapping("/api/contactLead")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class ContactEndpoint {
 	
 	@Autowired

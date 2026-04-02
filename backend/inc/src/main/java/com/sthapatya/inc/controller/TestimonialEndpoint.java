@@ -18,7 +18,7 @@ import com.sthapatya.inc.service.TestimonialService;
 
 @RestController
 @RequestMapping("/api/testimonial")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class TestimonialEndpoint {
 
 	@Autowired
