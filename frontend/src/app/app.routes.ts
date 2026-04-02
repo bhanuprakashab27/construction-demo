@@ -27,5 +27,6 @@ loadComponent:()=>import('./admin/pages/login/login.component')
 }
 
 
+
 ];
 
