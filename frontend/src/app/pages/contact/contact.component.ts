@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from '../../services/data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -18,7 +19,7 @@ export class ContactComponent {
   showToast = false;
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private dataService: DataService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private dataService: DataService) {
 
     this.contactForm = this.fb.group({
 
@@ -35,6 +36,17 @@ export class ContactComponent {
     });
 
   }
+
+  ngAfterViewInit() {
+  this.route.fragment.subscribe(f => {
+    if (f) {
+      const element = document.getElementById(f);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+}
 
   submitForm() {
 

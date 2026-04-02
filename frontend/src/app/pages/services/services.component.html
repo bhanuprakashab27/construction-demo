@@ -48,14 +48,24 @@ class="row align-items-center mb-5"
 [ngClass]="{'flex-lg-row-reverse': i % 2 !== 0}"
 >
 
-<div class="col-lg-6">
+<div class="col-lg-6" *ngIf="service.image">
 
-<img
+<img 
 [src]="service.image"
 class="img-fluid rounded shadow"
 alt="service">
 
 </div>
+
+<div class="col-lg-6" *ngIf="!service.image">
+
+<img 
+src="images/VincentThrivescoverimage.png"
+class="img-fluid rounded shadow"
+alt="service">
+
+</div>
+
 
 <div class="col-lg-6">
 

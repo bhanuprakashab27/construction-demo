@@ -98,3 +98,18 @@ font-weight:600;
 background:#ff9933;
 color:black;
 }
+
+
+.services-showcase p {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.services-showcase .row {
+  overflow: hidden;
+}
+
+.services-showcase img {
+  max-width: 100%;
+  height: auto;
+}

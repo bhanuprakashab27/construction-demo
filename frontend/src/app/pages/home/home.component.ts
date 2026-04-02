@@ -6,10 +6,11 @@ import { Project } from '../../entity/project';
 import { WhyChoose } from '../../entity/whychoose';
 import Swiper from 'swiper';
 import { Pagination, Autoplay } from 'swiper/modules';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,NgFor],
+  imports: [CommonModule,NgFor,RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -79,9 +80,13 @@ slidesPerView:3
       this.whyChoose = data;
     })
 
-    this.dataService.getTestimonials().subscribe(data => {
+    this.dataService.getAllTestimonial().subscribe(data => {
       this.testimonials = data;
     });
 
   }
+
+  createStars(rating: number): number[] {
+  return Array.from({ length: rating || 0 });
+}
 }

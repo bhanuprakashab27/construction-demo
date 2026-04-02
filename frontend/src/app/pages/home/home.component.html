@@ -15,7 +15,7 @@
         Our Projects
       </a>
 
-      <a routerLink="/contact" class="btn btn-outline-light btn-lg">
+      <a routerLink="/contact" fragment="contactForm" class="btn btn-outline-light btn-lg">
         Request Quote
       </a>
     </div>
@@ -272,13 +272,18 @@
 
 <div class="testimonial-card">
 
-<img [src]="t.image">
+<img *ngIf="t.image" [src]="t.image">
+
+<img *ngIf="!t.image" src="images/VincentThrivescoverimage.png" alt="">
 
 <p class="message">
 "{{t.message}}"
 </p>
 
 <h5>{{t.name}}</h5>
+<div> <i *ngFor="let star of createStars(t.rating)" 
+     class="fas fa-star text-warning">
+  </i></div>
 <span>{{t.role}}</span>
 
 </div>
